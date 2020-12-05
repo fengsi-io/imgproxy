@@ -1,7 +1,7 @@
 # js-imgproxy
 
 <h3>Using npm</h3>
-<pre>npm install wu-imgproxy</pre>
+<pre>npm install js-imgproxy</pre>
 
 <h3>Require</h3>
 <pre>
@@ -10,13 +10,13 @@ import { Init, CryptographicInit } from "js-imgproxy";
 const imgproxy =  new Init("https://imgproxy.example.com");
 // or
 const imgproxy =  new CryptographicInit({
-  salt: "hgjd",
-  key: "iimjmee",
+  salt: process.env.IMGPROXY_SALT,
+  key: process.env.IMGPROXY_KEY,
   baseUrl: "https://imgproxy.example.com"
 })
 
 const url = imgproxy.getNewUrl({
-  url: "https://imgproxy.example.com",
+  url: "https://imgproxy.example.com/01.jpg",
   width: 250,
   height: 50,
   quality: 90,
