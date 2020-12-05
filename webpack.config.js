@@ -1,3 +1,5 @@
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 module.exports = {
   mode: 'none',
   entry: './src/index.js',
@@ -21,7 +23,14 @@ module.exports = {
     ]
   },
   externals: {
-    "create-hmac": "create-hmac",
     "url-polyfill": "url-polyfill"
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new UglifyJsPlugin({
+        test: /\.js(\?.*)?$/i,
+      })
+    ]
   }
 }
