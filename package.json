@@ -1,0 +1,39 @@
+{
+  "name": "js-imgproxy",
+  "version": "1.0.0",
+  "description": "imgproxy",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "node test/test.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fengsi-io/js-imgproxy.git"
+  },
+  "keywords": [
+    "imgproxy"
+  ],
+  "author": "song",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fengsi-io/js-imgproxy/issues"
+  },
+  "homepage": "https://github.com/fengsi-io/js-imgproxy#readme",
+  "dependencies": {
+    "create-hmac": "^1.1.7",
+    "url-polyfill": "^1.1.12"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "babel-loader": "^8.2.2",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
