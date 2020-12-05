@@ -22,9 +22,6 @@ module.exports = {
       }
     ]
   },
-  externals: {
-    "url-polyfill": "url-polyfill"
-  },
   optimization: {
     minimize: true,
     minimizer: [
