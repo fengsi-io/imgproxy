@@ -1,11 +1,11 @@
-# js-imgproxy
+# @fengsi/imgproxy
 
 <h3>Using npm</h3>
-<pre>npm install js-imgproxy</pre>
+<pre>npm install @fengsi/imgproxy</pre>
 
 <h3>Require</h3>
 <pre>
-import { Init, CryptographicInit } from "js-imgproxy";
+import { Init, CryptographicInit } from "@fengsi/imgproxy";
 
 const imgproxy =  new Init("https://imgproxy.example.com");
 // or
