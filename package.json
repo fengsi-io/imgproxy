@@ -1,6 +1,6 @@
 {
-  "name": "js-imgproxy",
-  "version": "1.0.3",
+  "name": "@fengsi/imgproxy",
+  "version": "1.0.0",
   "description": "imgproxy",
   "files": [
     "dist"
