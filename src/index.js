@@ -1,4 +1,6 @@
-require ("url-polyfill");
+if (typeof window !== "undefined" && window === this && typeof window.URL !== "function") {
+  require ("url-polyfill");
+}
 
 const defaultParams = {
   url: "",
@@ -83,7 +85,7 @@ function CryptographicInit(init) {
 
       const processingOptions = `rs:${params.resizing_type}:${params.width}:${params.height}:${params.enlarge}/g:${params.extend}/q:${params.quality}`;
 
-      const target = `/${processingOptions}/${encodedSourceUrl}.${extension}`;
+      const target = `/${processingOptions}/${encodedSourceUrl}.${params.extension}`;
       const signature = sign(
         initDefault.salt,
         target,
@@ -91,7 +93,7 @@ function CryptographicInit(init) {
       );
 
       const url = new URL(initDefault.baseUrl);
-      url.pathname = `/${signature}/${processingOptions}/${encodedSourceUrl}.${extension}`;
+      url.pathname = `/${signature}/${processingOptions}/${encodedSourceUrl}.${params.extension}`;
       const result = url.toString();
 
       return result;

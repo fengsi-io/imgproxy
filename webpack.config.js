@@ -29,5 +29,9 @@ module.exports = {
         test: /\.js(\?.*)?$/i,
       })
     ]
+  },
+  externals: {
+    'create-hmac': 'commonjs2 create-hmac',
+    'url-polyfill': 'commonjs2 url-polyfill'
   }
 }
