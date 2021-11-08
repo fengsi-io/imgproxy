@@ -48,7 +48,7 @@ const url = imgproxy.getNewUrl({
   format: "webp"
 })
 
-// https://wu-1250000000.cos.ap-shanghai.myqcloud.com/gf/YYJdslldjjd.jpg?imageMogr2/crop/600x50/gravity/south/quality/70/format/webp
+// https://bucketName-1250000000.cos.ap-shanghai.myqcloud.com/gf/YYJdslldjjd.jpg?imageMogr2/crop/600x50/gravity/south/quality/70/format/webp
 </pre>
 
 <p>Default</p>
