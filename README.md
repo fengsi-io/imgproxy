@@ -16,12 +16,39 @@ const imgproxy =  new CryptographicInit({
 })
 
 const url = imgproxy.getNewUrl({
-  url: "https://imgproxy.example.com/01.jpg",
+  url: "https://example.com/01.jpg",
   width: 250,
   height: 50,
   quality: 90,
-  extension: "webp"
+  gravity: "ce",
+  format: "webp"
 })
+
+// https://imgproxy.example.com/pr:sharp/rs:fill:250:50:1/g:ce/q:90/LzAxLmpwZw.webp
+
+// https://imgproxy.example.com/Oril43v9g8FpI0Y9oxkiulRVRuFZGlxehZ6_AD2Q-v0/rs:fill:250:50:1/g:ce/q:90/LzAxLmpwZw.webp
+</pre>
+
+<h3>腾讯云对象储存图片处理</h3>
+<pre>
+import { TencentInit } from "@fengsi/imgproxy";
+
+const imgproxy =  new TencentInit({
+  bucket: "bucketName-1250000000",
+  region: "ap-shanghai",
+  protocol: "https"
+})
+
+const url = imgproxy.getNewUrl({
+  url: "https://example.com/gf/YYJdslldjjd.jpg",
+  gravity: "so",
+  width: 600,
+  height: 50,
+  quality: 70,
+  format: "webp"
+})
+
+// https://wu-1250000000.cos.ap-shanghai.myqcloud.com/gf/YYJdslldjjd.jpg?imageMogr2/crop/600x50/gravity/south/quality/70/format/webp
 </pre>
 
 <p>Default</p>
@@ -50,12 +77,12 @@ const url = imgproxy.getNewUrl({
             <td>0</td>
         </tr>
         <tr>
-            <td>extension</td>
+            <td>format</td>
             <td>String</td>
             <td>auto</td>
         </tr>
         <tr>
-            <td>extend</td>
+            <td>gravity</td>
             <td>String</td>
             <td>ce</td>
         </tr>
