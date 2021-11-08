@@ -6,8 +6,8 @@ const defaultParams = {
   url: "",
   width: 0,
   height: 0,
-  extension: "auto",
-  extend: "ce",
+  format: "auto",
+  gravity: "ce",
   quality: 80,
   enlarge: 1,
   resizing_type: "fill"
@@ -29,14 +29,14 @@ function Init(baseUrl) {
     };
 
     if (params.url && typeof params.url === "string") {
-      if (params.extension === "auto") {
-        params.extension = params.url.split(".").pop();
+      if (params.format === "auto") {
+        params.format = params.url.split(".").pop();
       }
 
       const sourcePathname = urlSafeBase64(new URL(params.url).pathname);
-      const processingOptions = `pr:sharp/rs:${params.resizing_type}:${params.width}:${params.height}:${params.enlarge}/g:${params.extend}/q:${params.quality}`;
+      const processingOptions = `pr:sharp/rs:${params.resizing_type}:${params.width}:${params.height}:${params.enlarge}/g:${params.gravity}/q:${params.quality}`;
 
-      url.pathname = `/${processingOptions}/${sourcePathname}.${params.extension}`;
+      url.pathname = `/${processingOptions}/${sourcePathname}.${params.format}`;
 
       return url.toString();
     }
@@ -76,16 +76,16 @@ function CryptographicInit(init) {
     Object.assign(params, obj);
 
     if (params.url && typeof params.url === "string") {
-      if (params.extension === "auto") {
-        params.extension = params.url.split(".").pop();
+      if (params.format === "auto") {
+        params.format = params.url.split(".").pop();
       }
 
       const sourcePathname = new URL(params.url).pathname;
       const encodedSourceUrl = urlSafeBase64(sourcePathname);
 
-      const processingOptions = `rs:${params.resizing_type}:${params.width}:${params.height}:${params.enlarge}/g:${params.extend}/q:${params.quality}`;
+      const processingOptions = `rs:${params.resizing_type}:${params.width}:${params.height}:${params.enlarge}/g:${params.gravity}/q:${params.quality}`;
 
-      const target = `/${processingOptions}/${encodedSourceUrl}.${params.extension}`;
+      const target = `/${processingOptions}/${encodedSourceUrl}.${params.format}`;
       const signature = sign(
         initDefault.salt,
         target,
@@ -93,7 +93,7 @@ function CryptographicInit(init) {
       );
 
       const url = new URL(initDefault.baseUrl);
-      url.pathname = `/${signature}/${processingOptions}/${encodedSourceUrl}.${params.extension}`;
+      url.pathname = `/${signature}/${processingOptions}/${encodedSourceUrl}.${params.format}`;
       const result = url.toString();
 
       return result;
@@ -101,4 +101,70 @@ function CryptographicInit(init) {
   }
 }
 
-module.exports = { Init, CryptographicInit };
+function TencentInit(init) {
+  const initDefault = {
+    bucket: "examplebucket-1250000000",
+    region: "ap-shanghai",
+    protocol: "http",
+    key: "imageMogr2"
+  }
+
+  const gravity = {
+    no: "north",
+    so: "south",
+    ea: "east",
+    we: "west",
+    noea: "northeast",
+    nowe: "northwest",
+    soea: "southeast",
+    sowe: "southwest",
+    ce: "center"
+  }
+
+  Object.assign(initDefault, init);
+
+  const url = new URL(`${initDefault.protocol}://${initDefault.bucket}.cos.${initDefault.region}.myqcloud.com`);
+
+  this.getNewUrl = function (obj) {
+    const params = Object.assign({}, defaultParams);
+    Object.assign(params, obj);
+
+    if (params.url && typeof params.url === "string") {
+      url.pathname = new URL(params.url).pathname
+
+      let search = `?${initDefault.key}`
+
+      if (params.width && !params.height) {
+        search += `/thumbnail/${params.width}x`
+      }
+
+      if (!params.width && params.height) {
+        search += `/thumbnail/x${params.height}`
+      }
+
+      if (params.width && params.height) {
+        search += `/crop/${params.width}x${params.height}`
+      }
+
+      if (params.gravity) {
+        search += `/gravity/${gravity[params.gravity]}`
+      }
+
+      if (params.quality) {
+        search += `/quality/${params.quality}`
+      }
+
+      if (params.format !== "auto") {
+        search += `/format/${params.format}`
+      }
+
+      if (search) {  
+        url.search = search
+      }
+
+      return url.toString();
+    }
+  }
+}
+
+module.exports = { Init, CryptographicInit, TencentInit };
