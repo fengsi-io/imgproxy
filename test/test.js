@@ -27,10 +27,24 @@ console.log("url2:" + imgproxy2.getNewUrl({
 const imgproxy3 =  new TencentInit({
   bucket: "wu-1250000000",
   region: "ap-shanghai",
-  protocol: "https"
+  protocol: "https",
+  key: "imageMogr2"
 });
 
 console.log("url3:" + imgproxy3.getNewUrl({
+  url: "https://example.com/gf/YYJdslldjjd.jpg",
+  gravity: "so",
+  width: 600,
+  height: 50,
+  quality: 70,
+  format: "webp"
+}));
+
+const imgproxy4 =  new TencentInit({
+  baseUrl: "https://imgproxy.example.com"
+});
+
+console.log("url4:" + imgproxy4.getNewUrl({
   url: "https://example.com/gf/YYJdslldjjd.jpg",
   gravity: "so",
   width: 600,

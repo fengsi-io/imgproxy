@@ -103,10 +103,11 @@ function CryptographicInit(init) {
 
 function TencentInit(init) {
   const initDefault = {
+    baseUrl: null,
     bucket: "examplebucket-1250000000",
     region: "ap-shanghai",
     protocol: "http",
-    key: "imageMogr2"
+    key: null
   }
 
   const gravity = {
@@ -123,7 +124,7 @@ function TencentInit(init) {
 
   Object.assign(initDefault, init);
 
-  const url = new URL(`${initDefault.protocol}://${initDefault.bucket}.cos.${initDefault.region}.myqcloud.com`);
+  const url = initDefault.baseUrl ? new URL(initDefault.baseUrl) : new URL(`${initDefault.protocol}://${initDefault.bucket}.cos.${initDefault.region}.myqcloud.com`);
 
   this.getNewUrl = function (obj) {
     const params = Object.assign({}, defaultParams);

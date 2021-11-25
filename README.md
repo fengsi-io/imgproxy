@@ -36,7 +36,8 @@ import { TencentInit } from "@fengsi/imgproxy";
 const imgproxy =  new TencentInit({
   bucket: "bucketName-1250000000",
   region: "ap-shanghai",
-  protocol: "https"
+  protocol: "https",
+  key: "imageMogr2"
 })
 
 const url = imgproxy.getNewUrl({
@@ -49,6 +50,21 @@ const url = imgproxy.getNewUrl({
 })
 
 // https://bucketName-1250000000.cos.ap-shanghai.myqcloud.com/gf/YYJdslldjjd.jpg?imageMogr2/crop/600x50/gravity/south/quality/70/format/webp
+
+const imgproxy =  new TencentInit({
+  baseUrl: "https://imgproxy.example.com"
+});
+
+const url = imgproxy.getNewUrl({
+  url: "https://example.com/gf/YYJdslldjjd.jpg",
+  gravity: "so",
+  width: 600,
+  height: 50,
+  quality: 70,
+  format: "webp"
+});
+
+// https://imgproxy.example.com/gf/YYJdslldjjd.jpg?null/crop/600x50/gravity/south/quality/70/format/webp
 </pre>
 
 <p>Default</p>
