@@ -64,7 +64,7 @@ const url = imgproxy.getNewUrl({
   format: "webp"
 });
 
-// https://imgproxy.example.com/gf/YYJdslldjjd.jpg?null/crop/600x50/gravity/south/quality/70/format/webp
+// https://imgproxy.example.com/gf/YYJdslldjjd.jpg?imageMogr2/crop/600x50/gravity/south/quality/70/format/webp
 </pre>
 
 <p>Default</p>

@@ -41,7 +41,8 @@ console.log("url3:" + imgproxy3.getNewUrl({
 }));
 
 const imgproxy4 =  new TencentInit({
-  baseUrl: "https://imgproxy.example.com"
+  baseUrl: "https://imgproxy.example.com",
+  key: "imageMogr2"
 });
 
 console.log("url4:" + imgproxy4.getNewUrl({

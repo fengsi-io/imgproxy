@@ -107,7 +107,7 @@ function TencentInit(init) {
     bucket: "examplebucket-1250000000",
     region: "ap-shanghai",
     protocol: "http",
-    key: null
+    key: "imageMogr2"
   }
 
   const gravity = {
