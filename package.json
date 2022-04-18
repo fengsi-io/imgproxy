@@ -25,7 +25,6 @@
   },
   "homepage": "https://github.com/fengsi-io/js-imgproxy#readme",
   "dependencies": {
-    "create-hmac": "^1.1.7",
     "url-polyfill": "^1.1.12"
   },
   "devDependencies": {
