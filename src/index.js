@@ -10,7 +10,8 @@ const defaultParams = {
   gravity: "ce",
   quality: 80,
   enlarge: 1,
-  resizing_type: "fill"
+  resizing_type: "fill",
+  extend: "1"
 }
 
 function Init(baseUrl) {
@@ -34,7 +35,7 @@ function Init(baseUrl) {
       }
 
       const sourcePathname = urlSafeBase64(new URL(params.url).pathname);
-      const processingOptions = `pr:sharp/rs:${params.resizing_type}:${params.width}:${params.height}:${params.enlarge}/g:${params.gravity}/q:${params.quality}`;
+      const processingOptions = `pr:sharp/rs:${params.resizing_type}:${params.width}:${params.height}:${params.enlarge}:${params.extend}/g:${params.gravity}/q:${params.quality}`;
 
       url.pathname = `/${processingOptions}/${sourcePathname}.${params.format}`;
 
