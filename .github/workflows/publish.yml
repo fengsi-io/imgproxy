@@ -15,9 +15,11 @@ jobs:
       - uses: actions/setup-node@v3.1.1
         with:
           node-version: 16
+          cache: "npm"
           registry-url: https://registry.npmjs.org/
           scope: "@fengsi"
 
-      - run: npm run build && npm publish --access public
+      - run: npm install && npm run build
+      - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
