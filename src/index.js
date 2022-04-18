@@ -24,18 +24,18 @@ function Init(baseUrl) {
   this.getNewUrl = function (obj) {
     const params = { ...defaultParams, ...obj };
 
-    if (params.url && typeof params.url === "string") {
+    if (!params.url || typeof params.url !== "string") {
       return;
     }
 
     // backward compatibility
-    if (params.extension && params.extension !== "auto" && params.format === "auto") {
+    if (params.extension && params.extension !== defaultParams.format && params.format === defaultParams.format) {
       params.format = params.extension;
     }
-
     const gravityTypes = ["no", "so", "ea", "we", "noea", "nowe", "soea", "sowe", "ce"];
-    if (params.extend && gravityTypes.includes(params.extend.split.split(":")[0]) && params.gravity === "ce") {
+    if (params.extend && gravityTypes.includes(params.extend.split(":")[0]) && params.gravity === defaultParams.gravity) {
       params.gravity = params.extend;
+      params.extend = defaultParams.extend;
     }
 
     if (params.format === "auto") {
